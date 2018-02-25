@@ -3,6 +3,13 @@
 
 —
 
+#### Performance Timeline
+
+Open your react app with the query param `react_perf`: https://localhost:3000?react_perf. This will log user timings in the DevTools Performance timeline.
+
+
+—
+
 #### Highlight Updates
 
 Highlight components when they update. Colors go from blue > green > yellow > red.
@@ -39,6 +46,31 @@ export default(
 ```
 
 [Redux `connectAdvanced` options](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectadvancedselectorfactory-connectoptions)
+
+—
+
+#### React Tree Teardowns
+
+> Whenever the root elements have different types, React will tear down the old tree and build the new tree from scratch. Going from `<a>` to `<img>`, or from `<Article>` to `<Comment>`, or from `<Button>` to `<div>` - any of those will lead to a full rebuild.
+
+[Elements Of Different Types](https://reactjs.org/docs/reconciliation.html#elements-of-different-types)
+
+You can call `Comp()` instead of `<Comp/>` to have react diff on the output instead of remounting the entire two components.
+
+—
+
+#### Prefer variable reference rather than inline declarations
+
+```js
+// Bad
+<Comp items={[1, 2, 3]} />
+
+// Good
+const items = [1, 2, 3]
+<Comp items={items} />
+```
+
+The second keeps a reference so React doesn't think it has mutated.
 
 —
 
